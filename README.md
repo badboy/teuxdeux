@@ -69,3 +69,4 @@ If you want to help with either of this or just have additional questions or ano
 [apiwiki]: https://github.com/badboy/teuxdeux/wiki/API
 [mislav]: https://github.com/mislav
 [instagram]: https://github.com/mislav/instagram/
+[octokit]: https://github.com/pengwynn/octokit
