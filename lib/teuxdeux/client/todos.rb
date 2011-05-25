@@ -22,6 +22,10 @@ module TeuxDeux
         }))
       end
 
+      def create_todo_someday(todo, done=0, position=0, options={})
+        create_todo(todo, "1989-12-01", done, position, options)
+      end
+
       def update_todo(todos, options={})
         data = todos.inject({:todo_item=> {}}) do |h, (todo_id,opts)|
           h[:todo_item][todo_id] = opts
