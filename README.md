@@ -36,13 +36,14 @@ Examples
 ### Create todo item
 
     client.create_todo("get freaky!", "2011-06-01")
+    => [<#Hashie::Rash do_on="2011-06-01" done=false id=10601583 position=0 todo="get freaky!" updated_at=1306360182 user_id=42>, ...]
 
 ### Update todo item
 
     client.update_todo({ 10601581 => { :done => 1 } })
     => [<#Hashie::Rash do_on="2011-05-26" done=true id=10601581 position=0 todo="create awesome teuxdeux client" updated_at=1306360182 user_id=42>, ...]
 
-# Delete todo item
+### Delete todo item
 
     client.delete_todo(10601581)
     => true
