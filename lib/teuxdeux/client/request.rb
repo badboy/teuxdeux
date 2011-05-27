@@ -9,10 +9,6 @@ module TeuxDeux
         request(:post, path, options, raw)
       end
 
-      def put(path, options={}, raw=false)
-        request(:put, path, options, raw)
-      end
-
       def delete(path, options={}, raw=false)
         request(:delete, path, options, raw)
       end
