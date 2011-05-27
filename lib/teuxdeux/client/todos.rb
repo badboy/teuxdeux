@@ -11,23 +11,25 @@ module TeuxDeux
       end
       alias :someday :list_somedays
 
-      def create_todo(todo, do_on, done=0, position=0, options={})
+      def create_todo(todo, do_on, done=false, position=0, options={})
         post("todo.json", options.merge({
           :todo_item => {
             :todo => todo,
             :do_on => do_on,
-            :done => done,
+            :done => done ? 1 : 0,
             :position => position
           }
         }))
       end
 
-      def create_todo_someday(todo, done=0, position=0, options={})
+      def create_todo_someday(todo, done=false, position=0, options={})
         create_todo(todo, "1989-12-01", done, position, options)
       end
 
       def update_todo(todos, options={})
         data = todos.inject({:todo_item=> {}}) do |h, (todo_id,opts)|
+          opts[:done] = opts[:done] ? 1 : 0 if opts[:done]
+          opts["done"] = opts["done"] ? 1 : 0 if opts["done"]
           h[:todo_item][todo_id] = opts
           h
         end
