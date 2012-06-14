@@ -20,7 +20,10 @@ describe TeuxDeux::Client do
 
       client.hash_to_params({ :data => "with spaces"}).should == "data=with%20spaces"
 
-      client.hash_to_params({ :data => { :a => 1, :b => 2 }}).should == "data[a]=1&data[b]=2"
+      [
+        "data[a]=1&data[b]=2",
+        "data[b]=2&data[a]=1"
+      ].include?(client.hash_to_params({ :data => { :a => 1, :b => 2 }})).should == true
 
       client.hash_to_params({ :data => { :foo => { :bar => 42 }, :b => 2 }}).should == "data[b]=2&data[foo][bar]=42"
     end
