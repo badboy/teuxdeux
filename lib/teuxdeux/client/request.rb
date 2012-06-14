@@ -22,7 +22,14 @@ module TeuxDeux
             request.url(path, options)
           when :post, :put
             request.path = path
-            request.body = options unless options.empty?
+            if !options.empty?
+              if options.kind_of? Hash
+                # Correctly format a hash as urlencoded string.
+                request.body = hash_to_params options
+              else
+                request.body = options
+              end
+            end
           end
         end
         raw ? response : response.body
