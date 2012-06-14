@@ -16,12 +16,13 @@ describe TeuxDeux::Client do
     it "should turn a hash into url params" do
       client = TeuxDeux::Client.new
 
+      client.hash_to_params({ :data => 1}).should == "data=1"
+
+      client.hash_to_params({ :data => "with spaces"}).should == "data=with%20spaces"
+
       client.hash_to_params({ :data => { :a => 1, :b => 2 }}).should == "data[a]=1&data[b]=2"
 
       client.hash_to_params({ :data => { :foo => { :bar => 42 }, :b => 2 }}).should == "data[b]=2&data[foo][bar]=42"
-
-      client.hash_to_params({:data => 1}).should == "data=1"
-
     end
   end
 end

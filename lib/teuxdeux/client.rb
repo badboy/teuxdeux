@@ -33,6 +33,7 @@ module TeuxDeux
         if v.is_a?(Hash)
           stack << [k,v]
         else
+          v = URI.escape v.to_s
           params << "#{k}=#{v}&"
         end
       end
@@ -42,6 +43,7 @@ module TeuxDeux
           if v.is_a?(Hash)
             stack << ["#{parent}[#{k}]", v]
           else
+            v = URI.escape v.to_s
             params << "#{parent}[#{k}]=#{v}&"
           end
         end
