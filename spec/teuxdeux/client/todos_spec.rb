@@ -4,7 +4,7 @@ require 'helper'
 
 describe TeuxDeux::Client::ToDos do
   before do
-    @client = TeuxDeux::Client.new(:login => 'badboy', :password => 'secret')
+    @client = TeuxDeux::Client.new(:login => 'user', :password => 'secret')
   end
 
   describe ".list_todos" do

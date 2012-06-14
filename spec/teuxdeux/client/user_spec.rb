@@ -4,7 +4,7 @@ require 'helper'
 
 describe TeuxDeux::Client::User do
   before do
-    @client = TeuxDeux::Client.new(:login => 'badboy', :password => 'secret')
+    @client = TeuxDeux::Client.new(:login => "user", :password => "secret")
   end
 
   describe ".user" do
@@ -12,7 +12,7 @@ describe TeuxDeux::Client::User do
       stub_get("user.json").
         to_return(:body => fixture("user.json"))
       users = @client.user
-      users.login.should == "badboy"
+      users.login.should == "user"
     end
   end
 end

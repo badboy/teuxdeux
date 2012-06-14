@@ -39,7 +39,7 @@ def teuxdeux_url(url)
   if url=~ /^http/
     url
   elsif @client && @client.authenticated?
-    "https://badboy:secret@teuxdeux.com/api/#{url}"
+    "https://user:secret@teuxdeux.com/api/#{url}"
   else
     "https://teuxdeux.com/api/#{url}"
   end
