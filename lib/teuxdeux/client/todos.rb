@@ -27,9 +27,8 @@ module TeuxDeux
       end
 
       def update_todo(todos, options={})
-        data = todos.inject({:todo_item=> {}}) do |h, (todo_id,opts)|
+        data = todos.inject({:todo_item => {}}) do |h, (todo_id,opts)|
           opts[:done] = opts[:done] ? 1 : 0 if opts[:done]
-          opts["done"] = opts["done"] ? 1 : 0 if opts["done"]
           h[:todo_item][todo_id] = opts
           h
         end
