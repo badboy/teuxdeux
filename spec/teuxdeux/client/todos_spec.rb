@@ -74,11 +74,13 @@ describe TeuxDeux::Client::ToDos do
   describe ".update_todo" do
     it "should update a todo item" do
       stub_post("update.json").
-        with(:body => "todo_item[12345][done]=1").
+        # WebMock does not correctly encode a ruby hash with a integer key, so
+        # we do it.
+        with(:body => "todo_item%5B12345%5D%5Bdone%5D=1").
         to_return(:body => fixture("update_todo.json"))
 
 
-      @client.update_todo(12345 => { :done => true })
+      @client.update_todo(12345, :done => true )
     end
   end
 
