@@ -11,6 +11,8 @@ With it you can do all the things the webinterface can do:
 
 See the [API documentation][apiwiki] for more information about the returnend data.
 
+Build Status: ![Travis CI Build Status](https://secure.travis-ci.org/badboy/teuxdeux.png)
+
 Examples
 ========
 
