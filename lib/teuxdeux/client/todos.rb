@@ -11,28 +11,31 @@ module TeuxDeux
       end
       alias :someday :list_somedays
 
-      def create_todo(todo, do_on, done=false, position=0, options={})
-        post("todo.json", options.merge({
+      def create_todo(todo, do_on, done=false, position=0)
+        post("todo.json", {
           :todo_item => {
             :todo => todo,
             :do_on => do_on,
             :done => done ? 1 : 0,
             :position => position
           }
-        }))
+        })
       end
 
-      def create_todo_someday(todo, done=false, position=0, options={})
-        create_todo(todo, "1989-12-01", done, position, options)
+      def create_todo_someday(todo, done=false, position=0)
+        create_todo(todo, "1989-12-01", done, position)
       end
 
-      def update_todo(todos, options={})
-        data = todos.inject({:todo_item => {}}) do |h, (todo_id,opts)|
-          opts[:done] = opts[:done] ? 1 : 0 if opts[:done]
-          h[:todo_item][todo_id] = opts
-          h
-        end
-        post("update.json", options.merge(data))
+      def update_todo(todo_id, opts={})
+        params = { todo_id => {} }
+
+        # Be explicit on what options can be set.
+        params[todo_id][:done]     = opts.delete(:done) ? 1 : 0 if opts.has_key? :done
+        params[todo_id][:position] = opts.delete(:position)     if opts.has_key? :position
+        params[todo_id][:do_on]    = opts.delete(:do_on)        if opts.has_key? :do_on
+        params[todo_id][:todo]     = opts.delete(:todo)         if opts.has_key? :todo
+
+        post("update.json", :todo_item => params)
       end
 
       def delete_todo(id, options={})
